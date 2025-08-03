@@ -27,8 +27,11 @@ fi
 
 echo "✅ Build completed successfully!"
 
-# Step 2: Upload files to S3 with proper content types
-echo "📤 Uploading files to S3 bucket: $BUCKET_NAME..."
+# Step 2: Clear S3 bucket and upload fresh files with proper content types
+echo "🧹 Clearing existing files from S3 bucket: $BUCKET_NAME..."
+aws s3 rm s3://$BUCKET_NAME/ --recursive
+
+echo "📤 Uploading fresh files to S3 bucket: $BUCKET_NAME..."
 
 # Upload HTML files
 aws s3 sync $BUILD_DIR/ s3://$BUCKET_NAME/ \
@@ -69,8 +72,8 @@ echo "✅ Files uploaded with proper content types!"
 # Step 3: Configure S3 bucket for CloudFront (not website hosting)
 echo "🔧 Configuring S3 bucket for CloudFront access..."
 
-# Set bucket policy for CloudFront OAI access
-cat > bucket-policy-cloudfront.json << EOF
+# Set bucket policy for both CloudFront and public website access
+cat > bucket-policy-dual.json << EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -82,6 +85,13 @@ cat > bucket-policy-cloudfront.json << EOF
             },
             "Action": "s3:GetObject",
             "Resource": "arn:aws:s3:::$BUCKET_NAME/*"
+        },
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::$BUCKET_NAME/*"
         }
     ]
 }
@@ -89,10 +99,10 @@ EOF
 
 aws s3api put-bucket-policy \
     --bucket $BUCKET_NAME \
-    --policy file://bucket-policy-cloudfront.json
+    --policy file://bucket-policy-dual.json
 
 # Clean up temporary policy file
-rm bucket-policy-cloudfront.json
+rm bucket-policy-dual.json
 
 # Step 4: Check if CloudFront distribution already exists
 echo "🔍 Checking for existing CloudFront distribution..."

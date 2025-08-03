@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import LeetCodeAnimation from './leetcode_animation.tsx'
+import LeetCode2106Animation from './leetcode-2106-animation.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <LeetCodeAnimation />
+    <LeetCode2106Animation />
   </StrictMode>,
 )

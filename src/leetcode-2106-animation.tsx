@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, RotateCcw, Play, Pause } from 'lucide-react';
 
-const LeetCodeAnimation = () => {
+const LeetCode2106Animation = () => {
   // Example: fruits = [[2,8],[6,3],[8,6]], startPos = 5, k = 4
   const [fruits, setFruits] = useState([[2,8],[6,3],[8,6]]);
   const [startPos, setStartPos] = useState(5);
@@ -476,4 +476,4 @@ const LeetCodeAnimation = () => {
   );
 };
 
-export default LeetCodeAnimation;
+export default LeetCode2106Animation;

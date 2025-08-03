@@ -1,0 +1,54 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#FFA116" stroke="#FF8C00" stroke-width="3"/>
+  
+  <!-- LeetCode-style bracket -->
+  <path d="M50 60 L50 80 L40 80 L40 120 L50 120 L50 140" 
+        fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <path d="M150 60 L150 80 L160 80 L160 120 L150 120 L150 140" 
+        fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Animation dots/steps -->
+  <circle cx="70" cy="100" r="8" fill="#FFFFFF">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" begin="0s"/>
+  </circle>
+  <circle cx="100" cy="100" r="8" fill="#FFFFFF">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  <circle cx="130" cy="100" r="8" fill="#FFFFFF">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+  
+  <!-- Algorithm visualization elements -->
+  <rect x="65" y="65" width="20" height="8" fill="#FFFFFF" rx="2">
+    <animateTransform attributeName="transform" 
+                      type="translate" 
+                      values="0,0; 20,0; 0,0" 
+                      dur="2s" 
+                      repeatCount="indefinite"/>
+  </rect>
+  
+  <rect x="115" y="65" width="20" height="8" fill="#FFFFFF" rx="2">
+    <animateTransform attributeName="transform" 
+                      type="translate" 
+                      values="0,0; -20,0; 0,0" 
+                      dur="2s" 
+                      repeatCount="indefinite" 
+                      begin="1s"/>
+  </rect>
+  
+  <!-- Code/binary representation -->
+  <text x="100" y="150" text-anchor="middle" fill="#FFFFFF" font-family="monospace" font-size="14" font-weight="bold">
+    ANIM
+  </text>
+  
+  <!-- Play button indicator -->
+  <polygon points="85,125 85,135 95,130" fill="#FFFFFF">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+  </polygon>
+  
+  <!-- Step indicators -->
+  <circle cx="105" cy="125" r="2" fill="#FFFFFF"/>
+  <circle cx="110" cy="125" r="2" fill="#FFFFFF"/>
+  <circle cx="115" cy="125" r="2" fill="#FFFFFF"/>
+</svg>
